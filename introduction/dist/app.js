@@ -128,6 +128,28 @@ class ProjectList {
         this.hostElement.insertAdjacentElement("beforeend", this.element);
     }
 }
+class ProjectState {
+    constructor() {
+        this.projects = [];
+    }
+    static getInstance() {
+        if (this.instance) {
+            return this.instance;
+        }
+        this.instance = new ProjectState();
+        return this.instance;
+    }
+    addProject(title, description, numOfPeople) {
+        const newProject = {
+            id: Math.random().toString(),
+            title: title,
+            description: description,
+            people: numOfPeople,
+        };
+        this.projects.push(newProject);
+    }
+}
+const projectState = ProjectState.getInstance();
 const prjInput = new ProjectInput();
 const activePrjList = new ProjectList("active");
 const finishedPrjList = new ProjectList("finished");
